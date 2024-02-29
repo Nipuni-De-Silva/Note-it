@@ -21,12 +21,13 @@ app.get('/', (req, res) => {
     res.send('Test server');
 })
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log(`Server is running on port ${port}`)
-        })
-    })
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${port}`)
+}) 
+
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => { console.log('Connected to database')})
     .catch((error) => {
         console.log(error);
     })
